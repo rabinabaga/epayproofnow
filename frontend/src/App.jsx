@@ -1,19 +1,13 @@
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
-import FeeManagementABI from "./FeeManagementABI.json";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import StudentAccess from "./StudentAccess";
 import AccountantAccess from "./AccountantAccess";
-import { useEffect, useState } from "react";
 import AdminLayout from "./layout/AdminLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminAccess from "./AdminAccess";
 import { ethers } from "ethers";
 import RoleBasedNavigation from "./roleBasedNavigation";
 import { useBlockchainContext } from "./contractContext";
+import HomepageWrapper from "./HompageWrapper";
 
 const App = () => {
   const {
@@ -82,7 +76,20 @@ const App = () => {
       {isConnected ? (
         <p>Connected account: {currentAccount}</p>
       ) : (
-        <button onClick={connectMetaMask}>Connect MetaMask</button>
+        <HomepageWrapper>
+          <button
+            style={{
+              color: "white",
+              backgroundColor: "purple",
+              width: "max-content",
+              padding: "0.6 rem",
+              border: "none",
+            }}
+            onClick={connectMetaMask}
+          >
+            Connect MetaMask
+          </button>
+        </HomepageWrapper>
       )}
       {connectedUserDetails?.role && (
         <p>Connected as: {userRole || "Unknown"}</p>
