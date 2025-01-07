@@ -39,7 +39,10 @@ contract FeeManagement is AccessControl {
     // Mappings
     mapping(address => User) public users; // Registered users
     mapping(address => Payment[]) public payments;
-    mapping(string => FeeRecord) public fees; // Fee data by faculty & semester
+    mapping(string => mapping(string => FeeRecord)) public courseSemesterFees; // course => (semester => FeeRecord)
+
+      FeeRecord[] public feeRecordsArray; // Flat array to store all records for easy retrieval
+
     Receipt[] public receipts; // Array of generated receipts
 
     // Events
@@ -105,35 +108,23 @@ function fetchPaymentOfConnectedStudent()
     }
 
     // Accountant enters fee details
-    function enterFee(string memory faculty, string memory semester, uint256 feeAmount) public onlyRole(ACCOUNTANT_ROLE) {
-         emit FeeEntered(faculty, semester, feeAmount);
-        fees[string(abi.encodePacked(faculty, semester))] = FeeRecord(faculty, semester, feeAmount, block.timestamp);
-        emit FeeEntered(faculty, semester, feeAmount);
+ function enterFee(string memory faculty, string memory semester, uint256 feeAmount) 
+    public 
+    onlyRole(ACCOUNTANT_ROLE) 
+{
+    require(feeAmount > 0, "Fee amount must be greater than zero");
+    courseSemesterFees[faculty][semester] = FeeRecord(faculty, semester, feeAmount, block.timestamp);
+       feeRecordsArray.push(FeeRecord(faculty, semester, feeAmount, block.timestamp));
+
+
+    emit FeeEntered(faculty, semester, feeAmount);
+}
+
+   // Function to retrieve all fee records as an array
+    function getFees() public view returns (FeeRecord[] memory) {
+        return feeRecordsArray;
     }
 
-    // Generate a receipt for a student (simulated period for testing)
-    function generateReceipt(string memory studentId, string memory faculty, string memory semester) public onlyRole(ACCOUNTANT_ROLE) {
-        string memory feeKey = string(abi.encodePacked(faculty, semester));
-        require(fees[feeKey].feeAmount > 0, "Fee not entered for faculty and semester");
 
-        receipts.push(Receipt({
-            studentId: studentId,
-            faculty: faculty,
-            semester: semester,
-            feeAmount: fees[feeKey].feeAmount,
-            timestamp: block.timestamp
-        }));
-
-        emit ReceiptGenerated(studentId, faculty, semester, fees[feeKey].feeAmount, block.timestamp);
-    }
-
-    // Get all receipts
-    function getAllReceipts() public view returns (Receipt[] memory) {
-        return receipts;
-    }
-
-    // Simulate clearing receipts after the test period (e.g., every day/hour/minute)
-    function clearReceipts() public onlyRole(DEFAULT_ADMIN_ROLE) {
-        delete receipts;
-    }
+  
 }

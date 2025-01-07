@@ -277,10 +277,42 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "clearReceipts",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "courseSemesterFees",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "faculty",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "semester",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "feeAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "generatedAt",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -309,12 +341,12 @@
   {
     "inputs": [
       {
-        "internalType": "string",
+        "internalType": "uint256",
         "name": "",
-        "type": "string"
+        "type": "uint256"
       }
     ],
-    "name": "fees",
+    "name": "feeRecordsArray",
     "outputs": [
       {
         "internalType": "string",
@@ -371,39 +403,11 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "studentId",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "faculty",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "semester",
-        "type": "string"
-      }
-    ],
-    "name": "generateReceipt",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [],
-    "name": "getAllReceipts",
+    "name": "getFees",
     "outputs": [
       {
         "components": [
-          {
-            "internalType": "string",
-            "name": "studentId",
-            "type": "string"
-          },
           {
             "internalType": "string",
             "name": "faculty",
@@ -421,11 +425,11 @@
           },
           {
             "internalType": "uint256",
-            "name": "timestamp",
+            "name": "generatedAt",
             "type": "uint256"
           }
         ],
-        "internalType": "struct FeeManagement.Receipt[]",
+        "internalType": "struct FeeManagement.FeeRecord[]",
         "name": "",
         "type": "tuple[]"
       }
