@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import './AdminLayout.css';
 
 const AdminLayout = () => {
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
+    <div className="admin_box">
+      <h1 id="admindash">Admin Dashboard</h1>
       <Outlet />
     </div>
   );

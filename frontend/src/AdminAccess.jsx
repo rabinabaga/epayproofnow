@@ -56,7 +56,7 @@ const AdminAccess = () => {
           placeholder="Role (Student or Accountant)"
           onChange={handleInputChange}
         />
-        <button onClick={registerUser} type="button">
+        <button onClick={registerUser} type="button" id="register_botton">
           Register User
         </button>
       </form>

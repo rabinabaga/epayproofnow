@@ -11,15 +11,18 @@ body {
     align-items: center;
     justify-content: flex-start;
     height: 100vh; /* Full viewport height */
-    padding: 5vh; /* Padding relative to viewport height */
+    padding-top: 1vh;
+    padding-left: 5vh; /* Padding relative to viewport height */
+    padding-right: 5vh;
+    padding-bottom: 5vh;
     box-sizing: border-box;
     background: linear-gradient(135deg, #a684c3, #d8b9e7);
     */
 
-    width: 70%;
-    height: 60%;
-    max-width: 800vh;
-    max-height: 100vh;
+    width: 100%;
+    height: 100%;
+    height: 70vh;
+    width: 90vh;
     margin: 0 auto; /* Center the container */
   }
   
@@ -77,7 +80,10 @@ body {
   .admin-area {
     text-align: center;
     font-size: 2vh; /* Slightly larger text relative to viewport height */
-    margin-bottom: 3vh; /* Spacing relative to viewport height */
+    margin-bottom: 5vh; /* Spacing relative to viewport height */
     color: #5a005a;
   }
   
+#register_botton{
+  width: 30%;
+}

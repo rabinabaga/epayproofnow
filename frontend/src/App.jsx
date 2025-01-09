@@ -74,7 +74,7 @@ const App = () => {
   return (
     <>
       {isConnected ? (
-        <p>Connected account: {currentAccount}</p>
+        <p id="account_no">Connected account: {currentAccount}</p>
       ) : (
         <div className="container">
           <h1 id="wel">Welcome to Epayproof</h1>
@@ -83,11 +83,11 @@ const App = () => {
         </div>
       )}
       {connectedUserDetails?.role && (
-        <p>Connected as: {userRole || "Unknown"}</p>
+        <p id="user_role">Connected as: {userRole || "Unknown"}</p>
       )}
 
       {connectedUserDetails && (
-        <div>
+        <div className="box">
           <Router>
             <Routes>
               <Route
