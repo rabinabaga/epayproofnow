@@ -8,6 +8,7 @@ import { ethers } from "ethers";
 import RoleBasedNavigation from "./roleBasedNavigation";
 import { useBlockchainContext } from "./contractContext";
 import HomepageWrapper from "./HompageWrapper";
+import './App.css';
 
 const App = () => {
   const {
@@ -25,10 +26,8 @@ const App = () => {
   const handleGetUserDetails = async () => {
     try {
       const userDetails = await contract.getUser();
-      console.log(userDetails[0], "userd", userDetails);
       let profileData;
       if (userDetails[0]) {
-        console.log("here");
         profileData = {
           fullName: userDetails[0],
           role: userDetails[1],
@@ -39,22 +38,16 @@ const App = () => {
           role: userDetails.role,
         };
       }
-      console.log(profileData, "prof");
 
       setConnectedUserDetails(profileData);
       setUserRole(profileData?.role);
-
       alert("✅ User detail fetched successfully!");
     } catch (err) {
       console.error("Error fetching user details :", err.reason);
       alert("❌ Error fetching user details");
     }
   };
-  console.log(connectedUserDetails, "connectedUserDetailsf", userRole);
 
-  // Initialize provider, signer, and contract
-
-  //connect to metamask, fetch user, check role set role
   const connectMetaMask = async () => {
     try {
       if (!window.ethereum) {
@@ -71,25 +64,17 @@ const App = () => {
       console.error("Error connecting to MetaMask:", error);
     }
   };
+
   return (
     <>
       {isConnected ? (
         <p>Connected account: {currentAccount}</p>
       ) : (
-        <HomepageWrapper>
-          <button
-            style={{
-              color: "white",
-              backgroundColor: "purple",
-              width: "max-content",
-              padding: "0.6 rem",
-              border: "none",
-            }}
-            onClick={connectMetaMask}
-          >
-            Connect MetaMask
-          </button>
-        </HomepageWrapper>
+        <div className="container">
+          <h1 id="wel">Welcome to Epayproof</h1>
+          <p id="intro">A permanent record of your college payments</p>
+          <button id="meta" onClick={connectMetaMask}>Connect MetaMask</button>
+        </div>
       )}
       {connectedUserDetails?.role && (
         <p>Connected as: {userRole || "Unknown"}</p>
@@ -102,7 +87,7 @@ const App = () => {
               <Route
                 index
                 element={<RoleBasedNavigation userRole={userRole} />}
-              ></Route>
+              />
               <Route element={<AdminLayout />}>
                 <Route
                   path="/admin/dashboard"
@@ -111,7 +96,7 @@ const App = () => {
                       <AdminAccess />
                     </ProtectedRoute>
                   }
-                ></Route>
+                />
               </Route>
               <Route
                 path="/accountant/dashboard"
@@ -120,7 +105,7 @@ const App = () => {
                     <AccountantAccess />
                   </ProtectedRoute>
                 }
-              ></Route>
+              />
               <Route
                 path="/student/dashboard"
                 element={
@@ -128,7 +113,7 @@ const App = () => {
                     <StudentAccess />
                   </ProtectedRoute>
                 }
-              ></Route>
+              />
             </Routes>
           </Router>
         </div>
