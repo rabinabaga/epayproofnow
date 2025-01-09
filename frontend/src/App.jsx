@@ -27,12 +27,15 @@ const App = () => {
     try {
       const userDetails = await contract.getUser();
       let profileData;
-      if (userDetails[0]) {
+
+      // Handle Admin Role separately
+      if (userDetails.fullName === "admin" && userDetails.role === "Admin") {
         profileData = {
-          fullName: userDetails[0],
-          role: userDetails[1],
+          fullName: userDetails.fullName,
+          role: userDetails.role,
         };
       } else {
+        // Handle registered users
         profileData = {
           fullName: userDetails.fullName,
           role: userDetails.role,
@@ -40,11 +43,11 @@ const App = () => {
       }
 
       setConnectedUserDetails(profileData);
-      setUserRole(profileData?.role);
-      alert("✅ User detail fetched successfully!");
+      setUserRole(profileData.role);
+      console.log("✅ User details fetched successfully:", profileData);
     } catch (err) {
-      console.error("Error fetching user details :", err.reason);
-      alert("❌ Error fetching user details");
+      console.error("❌ Error fetching user details:", err.message || err);
+      alert("Error fetching user details. Ensure the user is registered.");
     }
   };
 
@@ -58,10 +61,13 @@ const App = () => {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const accounts = await provider.send("eth_requestAccounts", []);
       setCurrentAccount(accounts[0]);
+
+      // Initialize Contract
       setIsConnected(true);
       await handleGetUserDetails();
     } catch (error) {
-      console.error("Error connecting to MetaMask:", error);
+      console.error("Error connecting to MetaMask:", error.message || error);
+      alert("❌ Error connecting to MetaMask. Check console for details.");
     }
   };
 
