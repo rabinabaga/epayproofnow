@@ -1,0 +1,96 @@
+/* General styles for the app */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #e4d3ed, #b395d6);
+    color: #333;
+}
+
+/* Central container styling */
+.container {
+    width: 70%;
+    height: 60%;
+    max-width: 500vh;
+    max-height: 100vh;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+    border: 2px solid #5a005a;
+    border-radius: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 5px 20px rgba(90, 0, 90, 0.5);
+    animation: fadeIn 1s ease-in-out;
+}
+#wel {
+    padding-top: 5vh; 
+}
+#intro {
+    padding-top: 6vh;
+    padding-bottom: 5vh;
+}
+
+
+/* Heading styles */
+h1 {
+    font-size: 2rem;
+    color: #4b0082;
+    font-family: 'Cursive', Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+}
+
+/* Subheading styles */
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #4b0082;
+    line-height: 1.5;
+}
+
+/* Connect MetaMask button */
+button {
+    color: white;
+    background-color: #5a005a;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(90, 0, 90, 0.3);
+}
+
+button:hover {
+    background-color: #7d007d;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #4b004b;
+    transform: translateY(1px);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

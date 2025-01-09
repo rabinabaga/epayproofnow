@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { useBlockchainContext } from "./contractContext";
+import './AdminAccess.css';
 
 const AdminAccess = () => {
   const { contract } = useBlockchainContext();
   const [formData, setFormData] = useState({
     fullName: "",
     role: "",
-    faculty: "",
-    semester: "",
-    feeAmount: "",
-    studentId: "",
+    userAddress: "",
   });
 
   const handleInputChange = (e) => {
@@ -32,10 +30,13 @@ const AdminAccess = () => {
       alert("❌ Error registering user");
     }
   };
+
   return (
-    <div>
-      Admin only area<br></br>
-      <div>
+    <div className="container">
+      <div className="admin-area">
+        <p>Admin only area</p>
+      </div>
+      <form>
         <h2>Register User</h2>
         <input
           type="text"
@@ -55,9 +56,12 @@ const AdminAccess = () => {
           placeholder="Role (Student or Accountant)"
           onChange={handleInputChange}
         />
-        <button onClick={registerUser}>Register User</button>
-      </div>
+        <button onClick={registerUser} type="button">
+          Register User
+        </button>
+      </form>
     </div>
   );
 };
+
 export default AdminAccess;
