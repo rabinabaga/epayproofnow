@@ -4,14 +4,14 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 contract FeeManagement is AccessControl {
-    // address public admin;
+    address public admin;
     bytes32 public constant ACCOUNTANT_ROLE = keccak256("ACCOUNTANT_ROLE");
     bytes32 public constant STUDENT_ROLE = keccak256("STUDENT_ROLE");
 
     // Constructor: Assigns deployer as Admin
     constructor() {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        // admin = msg.sender;
+        admin = msg.sender;
     }
 
     // Modifier: Ensures the user is a Student
@@ -62,7 +62,7 @@ contract FeeManagement is AccessControl {
     event UserRegistered(address indexed userAddress, string fullName, string role);
 
     // Event for receipt settlement
-    // event ReceiptSettled(address indexed student, uint256 receiptId, uint256 amount);
+    event ReceiptSettled(address indexed student, uint256 receiptId, uint256 amount);
 
     // Register a student
     function registerStudent(
@@ -176,20 +176,20 @@ contract FeeManagement is AccessControl {
  
 
     // Mark a receipt as settled and transfer the amount to the admin
-    // function settleReceipt(uint256 receiptId) public payable {
-    //     Receipt storage receipt = receipts[receiptId];
+    function settleReceipt(uint256 receiptId) public payable {
+        Receipt storage receipt = receipts[receiptId];
 
-    //     require(receipt.student == msg.sender, "Not your receipt");
-    //     require(keccak256(bytes(receipt.status)) == keccak256(bytes("due")), "Receipt already settled");
-    //     require(msg.value == receipt.feeAmount, "Incorrect payment amount");
+        require(receipt.student == msg.sender, "Not your receipt");
+        require(keccak256(bytes(receipt.status)) == keccak256(bytes("due")), "Receipt already settled");
+        require(msg.value == receipt.feeAmount, "Incorrect payment amount");
 
-    //     (bool success, ) = admin.call{value: msg.value}("");
-    //     require(success, "Payment transfer failed");
+        (bool success, ) = admin.call{value: msg.value}("");
+        require(success, "Payment transfer failed");
 
-    //     receipt.status = "settled";
+        receipt.status = "settled";
 
-    //     emit ReceiptSettled(msg.sender, receiptId, msg.value);
-    // }
+        emit ReceiptSettled(msg.sender, receiptId, msg.value);
+    }
 
     // Get all receipts for a student
     function getReceiptsForStudent(address student) public view returns (Receipt[] memory) {
