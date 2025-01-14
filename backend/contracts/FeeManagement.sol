@@ -192,8 +192,8 @@ contract FeeManagement is AccessControl {
     }
 
     // Get all receipts for a student
-    function getReceiptsForStudent(address student) public view returns (Receipt[] memory) {
-        uint256[] memory receiptIds = studentReceipts[student];
+    function getReceiptsForStudent() public view returns (Receipt[] memory) {
+        uint256[] memory receiptIds = studentReceipts[msg.sender];
         Receipt[] memory result = new Receipt[](receiptIds.length);
 
         for (uint256 i = 0; i < receiptIds.length; i++) {
