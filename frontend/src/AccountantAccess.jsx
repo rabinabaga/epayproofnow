@@ -2,70 +2,88 @@ import { useBlockchainContext } from "./contractContext";
 import EnterFeeForm from "./enterFeeForm";
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
+import GenerateReceiptsForm from "./accountantComponents/GenerateReceipts";
 
 const AccountantAccess = () => {
-  const { connectedUserDetails, contract } = useBlockchainContext();
+  const { contract } = useBlockchainContext();
+  const [formData, setFormData] = useState({
+    faculty: "",
+    semester: "",
+    feeAmount: "",
+  });
 
-  const [feeList, setFeeList] = useState([]);
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-  const fetchFees = async () => {
-    if (!connectedUserDetails) {
-      alert("Please connect MetaMask first!");
-      return;
-    }
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      const fees = await contract.getFees();
+      // Call the setFee function from the contract
+      const tx = await contract.setFee(
+        formData.faculty,
+        formData.semester,
+        formData.feeAmount
+      );
 
-      const processedFees = fees.map((fee) => {
-        const date = new Date(
-          Number(fee.generatedAt) * 1000
-        ).toLocaleDateString();
-        return {
-          faculty: fee.faculty,
-          semester: fee.semester,
-          feeAmount: ethers.formatUnits(fee.feeAmount, "ether"), // Convert to ETH
-          generatedAt: date,
-        };
-      });
+      await tx.wait();
 
-      setFeeList(processedFees);
-
-      alert("Fees fetched successfully");
+      alert("Fee successfully set!");
     } catch (error) {
-      console.error("Error fetching fees:", error);
+      console.error("Error setting fee:", error);
+      alert("Failed to set fee. See console for details.");
     }
   };
   return (
     <div>
-      <h3>Accountant only area</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <td>{connectedUserDetails.fullName}</td>
-        </tbody>
-      </table>
-      <EnterFeeForm />
-      <button onClick={fetchFees}>Fetch fees</button>
-      <h2>Fee Records</h2>
-      {feeList.length === 0 ? (
-        <p>No fees available</p>
-      ) : (
-        <ul>
-          {feeList.map((fee, index) => (
-            <li key={index}>
-              <p>Faculty: {fee.faculty}</p>
-              <p>Semester: {fee.semester}</p>
-              <p>Fee Amount: {fee.feeAmount} ETH</p>
-              <p>Generated At: {fee.generatedAt}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+      <h2>Set Fee for Faculty and Semester</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Faculty:
+            <input
+              type="text"
+              name="faculty"
+              value={formData.faculty}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Semester:
+            <input
+              type="text"
+              name="semester"
+              value={formData.semester}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Fee Amount (in Wei):
+            <input
+              type="number"
+              name="feeAmount"
+              value={formData.feeAmount}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+        <button type="submit">Set Fee</button>
+      </form>
+      <GenerateReceiptsForm />
     </div>
   );
 };
