@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useBlockchainContext } from "../contractContext";
+import SettleReceipt from "./SettleReceipt";
 
 const StudentReceipts = () => {
   const { contract } = useBlockchainContext();
   const [receipts, setReceipts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedReceiptId, setSelectedReceiptId] = useState(BigInt(-1));
+  const [selectedFeeAmount, setSelectedFeeAmount] = useState(0);
 
   // Fetch receipts for the student
   const fetchReceipts = async () => {
@@ -36,6 +39,10 @@ const StudentReceipts = () => {
   if (error) {
     return <div>{error}</div>;
   }
+  const handleSettleReceipt = (receiptId, feeAmount) => {
+    setSelectedReceiptId(BigInt(receiptId));
+    setSelectedFeeAmount(feeAmount);
+  };
 
   return (
     <div>
@@ -54,11 +61,26 @@ const StudentReceipts = () => {
           <tbody>
             {receipts.map((receipt) => (
               <tr key={receipt.id.toString()}>
-                <td>{receipt.id}</td>
+                <td>{receipt.id.toString()}</td>
                 <td>{receipt.faculty}</td>
                 <td>{receipt.semester}</td>
                 <td>{receipt.feeAmount.toString()}</td>
                 <td>{receipt.status}</td>
+                <td>
+                  <button
+                    onClick={() =>
+                      handleSettleReceipt(receipt.id, receipt.feeAmount)
+                    }
+                  >
+                    Settle receipt
+                  </button>
+                  {selectedReceiptId !== BigInt(-1) && (
+                    <SettleReceipt
+                      receiptId={selectedReceiptId}
+                      feeAmount={selectedFeeAmount}
+                    />
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
