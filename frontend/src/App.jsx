@@ -28,20 +28,6 @@ const App = () => {
       console.log(userDetails[0], "userd", userDetails);
       let profileData;
       const [fullName, role, faculty, semester] = userDetails;
-      // if (userDetails[0]) {
-      //   console.log("here");
-      //   profileData = {
-      //     fullName: userDetails[0],
-      //     role: userDetails[1],
-      //   };
-      // }
-      // else {
-      //   profileData = {
-      //     fullName: userDetails.fullName,
-      //     role: userDetails.role,
-      //   };
-      // }
-      console.log(profileData, "prof");
 
       setConnectedUserDetails({ fullName, role, faculty, semester });
       setUserRole(role);
