@@ -24,25 +24,27 @@ const App = () => {
 
   const handleGetUserDetails = async () => {
     try {
-      const userDetails = await contract.getUser();
+      const userDetails = await contract.getUser(currentAccount);
       console.log(userDetails[0], "userd", userDetails);
       let profileData;
-      if (userDetails[0]) {
-        console.log("here");
-        profileData = {
-          fullName: userDetails[0],
-          role: userDetails[1],
-        };
-      } else {
-        profileData = {
-          fullName: userDetails.fullName,
-          role: userDetails.role,
-        };
-      }
+      const [fullName, role, faculty, semester] = userDetails;
+      // if (userDetails[0]) {
+      //   console.log("here");
+      //   profileData = {
+      //     fullName: userDetails[0],
+      //     role: userDetails[1],
+      //   };
+      // }
+      // else {
+      //   profileData = {
+      //     fullName: userDetails.fullName,
+      //     role: userDetails.role,
+      //   };
+      // }
       console.log(profileData, "prof");
 
-      setConnectedUserDetails(profileData);
-      setUserRole(profileData?.role);
+      setConnectedUserDetails({ fullName, role, faculty, semester });
+      setUserRole(role);
 
       alert("✅ User detail fetched successfully!");
     } catch (err) {

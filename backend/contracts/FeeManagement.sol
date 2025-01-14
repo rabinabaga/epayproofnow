@@ -116,6 +116,9 @@ contract FeeManagement is AccessControl {
             string memory faculty
         )
     {
+        if(hasRole(DEFAULT_ADMIN_ROLE,msg.sender)){
+                return ("admin","Admin","","");
+        }
         require(users[_userAddress].exists, "User not found");
 
         User memory user = users[_userAddress];
