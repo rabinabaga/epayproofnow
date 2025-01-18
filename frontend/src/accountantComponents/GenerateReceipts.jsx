@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useBlockchainContext } from "../contractContext";
 
+
 function GenerateReceiptsForm() {
   const { contract } = useBlockchainContext();
   const [formData, setFormData] = useState({
@@ -40,37 +41,45 @@ function GenerateReceiptsForm() {
   };
 
   return (
-    <div>
-      <h2>Generate Receipts for Faculty and Semester</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Faculty:
+    <div className="container">
+      <div className="form-container">
+        <h2 className="form-title">Generate Receipt for Student</h2>
+        <form onSubmit={handleSubmit} className="form">
+          <div className="form-group">
+            <label htmlFor="faculty" className="form-label">Faculty</label>
             <input
               type="text"
+              id="faculty"
               name="faculty"
               value={formData.faculty}
               onChange={handleChange}
               required
+              className="form-input"
             />
-          </label>
-        </div>
-        <div>
-          <label>
-            Semester:
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="semester" className="form-label">Semester</label>
             <input
               type="text"
+              id="semester"
               name="semester"
               value={formData.semester}
               onChange={handleChange}
               required
+              className="form-input"
             />
-          </label>
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Processing..." : "Generate Receipts"}
-        </button>
-      </form>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className={`form-button ${loading ? "form-button-loading" : ""}`}
+          >
+            {loading ? "Processing..." : "Generate Receipts"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

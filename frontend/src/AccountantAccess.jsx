@@ -1,8 +1,7 @@
+import React, { useState } from "react";
 import { useBlockchainContext } from "./contractContext";
-import EnterFeeForm from "./enterFeeForm";
-import React, { useState, useEffect } from "react";
-import { ethers } from "ethers";
 import GenerateReceiptsForm from "./accountantComponents/GenerateReceipts";
+import "./AccountantAccess.css";
 
 const AccountantAccess = () => {
   const { contract } = useBlockchainContext();
@@ -41,50 +40,60 @@ const AccountantAccess = () => {
       alert("Failed to set fee. See console for details.");
     }
   };
+
   return (
-    <div>
-      <h2>Set Fee for Faculty and Semester</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Faculty:
+    <div className="container">
+      <div className="form-container">
+        <h2 className="form-title">Set Student Fee Amount </h2>
+        <form onSubmit={handleSubmit} className="form">
+          <div className="form-group">
+            <label htmlFor="faculty" className="form-label">Faculty</label>
             <input
               type="text"
+              id="faculty"
               name="faculty"
               value={formData.faculty}
               onChange={handleChange}
               required
+              className="form-input"
             />
-          </label>
-        </div>
-        <div>
-          <label>
-            Semester:
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="semester" className="form-label">Semester</label>
             <input
               type="text"
+              id="semester"
               name="semester"
               value={formData.semester}
               onChange={handleChange}
               required
+              className="form-input"
             />
-          </label>
-        </div>
-        <div>
-          <label>
-            Fee Amount (in Wei):
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="feeAmount" className="form-label">Fee Amount (in Wei)</label>
             <input
               type="number"
+              id="feeAmount"
               name="feeAmount"
               value={formData.feeAmount}
               onChange={handleChange}
               required
+              className="form-input"
             />
-          </label>
+          </div>
+
+          <button type="submit" className="form-button">Set Fee</button>
+        </form>
+
+        <div className="receipts-section">
+          <GenerateReceiptsForm />
         </div>
-        <button type="submit">Set Fee</button>
-      </form>
-      <GenerateReceiptsForm />
+      </div>
     </div>
   );
 };
+
 export default AccountantAccess;

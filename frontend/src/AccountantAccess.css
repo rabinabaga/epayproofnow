@@ -1,0 +1,131 @@
+/* General Reset */
+* {
+    box-sizing: border-box; /* Ensures padding and border are included in the element's dimensions */
+    margin: 0;
+    padding: 0;
+}
+
+/* General Body Styles */
+html, body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    width: 100%; /* Ensure the body takes full width */
+    background: linear-gradient(
+        to bottom, 
+        #fdf6ff 0%,      /* Very light lavender at the top */
+        #f3d9fa 35%,     /* Soft pinkish-purple transition */
+        #d5bff3 65%,     /* Light purple in the middle */
+        #a8c4f8 100%     /* Calm blue at the bottom */
+    ); /* Smooth and gradual gradient */
+    background-attachment: fixed; /* Ensures the gradient stays in place while scrolling */
+}
+
+/* Main Container for Content */
+.container {
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center; /* Center the form container horizontally */
+    overflow: hidden; /* Prevent accidental overflow */
+}
+
+/* Form Container */
+.form-container {
+    background: #ffffff; /* White background for contrast */
+    border-radius: 12px; /* Softer corners */
+    padding: 40px; /* Increased padding for better spacing */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow for differentiation */
+    max-width: 600px; /* Wider form container */
+    width: 100%;
+    margin: 20px; /* Add spacing around the container */
+    overflow: hidden; /* Prevent form container overflow */
+}
+
+/* Form Title Styling */
+.form-title {
+    font-size: 26px; /* Slightly larger font */
+    font-weight: bold;
+    text-align: center;
+    color: #6b46c1;
+    margin-bottom: 30px; /* Extra spacing */
+}
+
+/* Form Layout and Inputs */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Wider gaps for better spacing */
+    width: 100%; /* Full width of the container */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 8px; /* Better spacing for labels */
+    color: #4a5568;
+}
+
+.form-input {
+    padding: 12px; /* Larger padding for comfort */
+    border: 1px solid #cbd5e0;
+    border-radius: 6px; /* Slightly rounded input fields */
+    font-size: 16px;
+    width: 100%;
+}
+
+.form-input:focus {
+    border-color: #805ad5;
+    outline: none;
+    box-shadow: 0 0 8px rgba(128, 90, 213, 0.5); /* Subtle glow on focus */
+}
+
+/* Submit Button Styling */
+.form-button {
+    padding: 12px;
+    background: #805ad5; /* Primary color */
+    color: white;
+    font-size: 18px; /* Larger button text */
+    font-weight: bold;
+    border: none;
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-button:hover {
+    background: #6b46c1; /* Darker hover state */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Section for Receipts */
+.receipts-section {
+    margin-top: 50px; /* Increased spacing for better layout */
+}
+
+/* Responsive Adjustments */
+@media screen and (max-height: 800px) {
+    body {
+        justify-content: flex-start; /* Adjust for smaller screens */
+    }
+}
+
+/* Responsive Adjustments for Smaller Screens */
+@media screen and (max-width: 600px) {
+    .form-container {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+}
