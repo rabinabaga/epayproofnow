@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #d8b9e7;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    padding: 5vh; /* Padding relative to viewport height */
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #a684c3, #d8b9e7);
+}
+
+header {
+    margin-bottom: 6vh; /* Add spacing between connected info and the form */
+    text-align: center;
+}
+
+h2 {
+    font-size: 3vh; /* Slightly larger font size */
+    color: #5a005a;
+    margin-bottom: 4vh; /* Add spacing below the dashboard title */
+}
+
+.admin-area {
+    text-align: center;
+    font-size: 2.2vh; /* Slightly larger text */
+    margin-bottom: 5vh; /* Maintain spacing below this text */
+    color: #5a005a;
+}
+
+.connected-info {
+    text-align: center;
+    font-size: 2vh;
+    margin-bottom: 3vh; /* Space between this and dashboard heading */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 45vw; /* Reduce form width */
+    padding: 4vh;
+    background-color: white;
+    border-radius: 2vh;
+    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.3);
+}
+
+form input {
+    width: 90%; /* Reduce width for more whitespace */
+    margin-bottom: 2.5vh;
+    padding: 1.8vh;
+    font-size: 2.2vh; /* Increase font size for the text you type */
+    border: 0.3vh solid #a684c3;
+    border-radius: 1vh;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+form input::placeholder {
+    font-size: 2.2vh; /* Increase font size for placeholder text */
+    color: #a684c3; /* Lighter color for the placeholder */
+    opacity: 0.7;
+}
+
+form input:focus {
+    border-color: #5a005a;
+}
+
+form button {
+    width: 90%; /* Match the input fields */
+    padding: 1.8vh;
+    font-size: 1.8vh;
+    color: white;
+    background-color: #5a005a;
+    border: none;
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #7b3e9e;
+}
+
+#register_button {
+    width: 30%;
+}
+
+/* Styling for the Register buttons */
+.register-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 2vh; /* Space between the buttons */
+    margin-bottom: 4vh; /* Add spacing below the buttons */
+}
+
+.register-buttons button {
+    font-size: 2vh;
+    padding: 1.2vh 3vh; /* Adjust padding for better visuals */
+    border-radius: 2vh;
+    border: none;
+    background-color: #5a005a; /* Main color */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-buttons button:hover {
+    background-color: #7b3e9e; /* Lighter hover effect */
+    transform: scale(1.05); /* Slight zoom on hover */
+}

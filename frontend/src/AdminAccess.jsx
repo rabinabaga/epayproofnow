@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useBlockchainContext } from "./contractContext";
+import './AdminAccess.css';
 
 const AdminAccess = () => {
   const { contract } = useBlockchainContext();
