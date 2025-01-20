@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import { useBlockchainContext } from "./contractContext";
-import GenerateReceiptsForm from "./accountantComponents/GenerateReceipts";
-import "./AccountantAccess.css";
+import { useState } from "react";
+import { useBlockchainContext } from "../contractContext";
 
-const AccountantAccess = () => {
+
+function GenerateReceiptsForm() {
   const { contract } = useBlockchainContext();
   const [formData, setFormData] = useState({
     faculty: "",
     semester: "",
-    feeAmount: "",
   });
+  const [loading, setLoading] = useState(false);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -20,31 +18,32 @@ const AccountantAccess = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      // Call the setFee function from the contract
-      const tx = await contract.setFee(
+      // Call the generateReceiptsForFacultyAndSemester function
+      const tx = await contract.generateReceiptsForFacultyAndSemester(
         formData.faculty,
-        formData.semester,
-        formData.feeAmount
+        formData.semester
       );
 
       await tx.wait();
 
-      alert("Fee successfully set!");
+      alert("Receipts successfully generated!");
     } catch (error) {
-      console.error("Error setting fee:", error);
-      alert("Failed to set fee. See console for details.");
+      console.error("Error generating receipts:", error);
+      alert("Failed to generate receipts. See console for details.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="container">
       <div className="form-container">
-        <h2 className="form-title">Set Student Fee Amount </h2>
+        <h2 className="form-title">Generate Receipt for Student</h2>
         <form onSubmit={handleSubmit} className="form">
           <div className="form-group">
             <label htmlFor="faculty" className="form-label">Faculty</label>
@@ -72,28 +71,17 @@ const AccountantAccess = () => {
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="feeAmount" className="form-label">Fee Amount (in Wei)</label>
-            <input
-              type="number"
-              id="feeAmount"
-              name="feeAmount"
-              value={formData.feeAmount}
-              onChange={handleChange}
-              required
-              className="form-input"
-            />
-          </div>
-
-          <button type="submit" className="form-button">Set Fee</button>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`form-button ${loading ? "form-button-loading" : ""}`}
+          >
+            {loading ? "Processing..." : "Generate Receipts"}
+          </button>
         </form>
-
-        <div className="receipts-section">
-          <GenerateReceiptsForm />
-        </div>
       </div>
     </div>
   );
-};
+}
 
-export default AccountantAccess;
+export default GenerateReceiptsForm;

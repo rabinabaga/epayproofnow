@@ -29,112 +29,25 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
-        "internalType": "string",
-        "name": "message",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "fullName",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "role",
-        "type": "string"
-      }
-    ],
-    "name": "Debug",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "faculty",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "semester",
-        "type": "string"
+        "indexed": true,
+        "internalType": "address",
+        "name": "student",
+        "type": "address"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "feeAmount",
+        "name": "receiptId",
         "type": "uint256"
-      }
-    ],
-    "name": "FeeEntered",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "payer",
-        "type": "address"
       },
       {
         "indexed": false,
         "internalType": "uint256",
         "name": "amount",
         "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "timestamp",
-        "type": "uint256"
       }
     ],
-    "name": "PaymentMade",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "studentId",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "faculty",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "semester",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "feeAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "ReceiptGenerated",
+    "name": "ReceiptSettled",
     "type": "event"
   },
   {
@@ -216,7 +129,7 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "userAddress",
         "type": "address"
@@ -277,6 +190,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "admin",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "string",
@@ -289,26 +215,11 @@
         "type": "string"
       }
     ],
-    "name": "courseSemesterFees",
+    "name": "feeMapping",
     "outputs": [
       {
-        "internalType": "string",
-        "name": "faculty",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "semester",
-        "type": "string"
-      },
-      {
         "internalType": "uint256",
-        "name": "feeAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "generatedAt",
+        "name": "",
         "type": "uint256"
       }
     ],
@@ -326,14 +237,9 @@
         "internalType": "string",
         "name": "semester",
         "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "feeAmount",
-        "type": "uint256"
       }
     ],
-    "name": "enterFee",
+    "name": "generateReceiptsForFacultyAndSemester",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -341,31 +247,21 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
+        "internalType": "string",
+        "name": "_faculty",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_semester",
+        "type": "string"
       }
     ],
-    "name": "feeRecordsArray",
+    "name": "getFeeForFacultyAndSemester",
     "outputs": [
       {
-        "internalType": "string",
-        "name": "faculty",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "semester",
-        "type": "string"
-      },
-      {
         "internalType": "uint256",
-        "name": "feeAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "generatedAt",
+        "name": "",
         "type": "uint256"
       }
     ],
@@ -374,40 +270,20 @@
   },
   {
     "inputs": [],
-    "name": "fetchPaymentOfConnectedStudent",
+    "name": "getReceiptsForStudent",
     "outputs": [
       {
         "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
           {
             "internalType": "address",
-            "name": "payer",
+            "name": "student",
             "type": "address"
           },
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "timestamp",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct FeeManagement.Payment[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getFees",
-    "outputs": [
-      {
-        "components": [
           {
             "internalType": "string",
             "name": "faculty",
@@ -424,12 +300,12 @@
             "type": "uint256"
           },
           {
-            "internalType": "uint256",
-            "name": "generatedAt",
-            "type": "uint256"
+            "internalType": "string",
+            "name": "status",
+            "type": "string"
           }
         ],
-        "internalType": "struct FeeManagement.FeeRecord[]",
+        "internalType": "struct FeeManagement.Receipt[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -457,25 +333,34 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_userAddress",
+        "type": "address"
+      }
+    ],
     "name": "getUser",
     "outputs": [
       {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "fullName",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "role",
-            "type": "string"
-          }
-        ],
-        "internalType": "struct FeeManagement.User",
-        "name": "",
-        "type": "tuple"
+        "internalType": "string",
+        "name": "fullName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "role",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "semester",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "faculty",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -525,39 +410,11 @@
   },
   {
     "inputs": [],
-    "name": "makePayment",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "payments",
+    "name": "nextReceiptId",
     "outputs": [
       {
-        "internalType": "address",
-        "name": "payer",
-        "type": "address"
-      },
-      {
         "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "timestamp",
+        "name": "",
         "type": "uint256"
       }
     ],
@@ -575,9 +432,14 @@
     "name": "receipts",
     "outputs": [
       {
-        "internalType": "string",
-        "name": "studentId",
-        "type": "string"
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "student",
+        "type": "address"
       },
       {
         "internalType": "string",
@@ -595,9 +457,9 @@
         "type": "uint256"
       },
       {
-        "internalType": "uint256",
-        "name": "timestamp",
-        "type": "uint256"
+        "internalType": "string",
+        "name": "status",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -607,21 +469,44 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "userAddress",
+        "name": "_userAddress",
         "type": "address"
       },
       {
         "internalType": "string",
-        "name": "fullName",
+        "name": "_fullName",
+        "type": "string"
+      }
+    ],
+    "name": "registerAccountant",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_userAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_fullName",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "role",
+        "name": "_semester",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_faculty",
         "type": "string"
       }
     ],
-    "name": "registerUser",
+    "name": "registerStudent",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -665,6 +550,119 @@
   {
     "inputs": [
       {
+        "internalType": "string",
+        "name": "faculty",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "semester",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "feeAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "setFee",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "receiptId",
+        "type": "uint256"
+      }
+    ],
+    "name": "settleReceipt",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "studentReceipts",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "studentsByFacultyAndSemester",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_faculty",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_semester",
+        "type": "string"
+      }
+    ],
+    "name": "studentsByFacultyAndSemesterFunc",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "bytes4",
         "name": "interfaceId",
         "type": "bytes4"
@@ -676,30 +674,6 @@
         "internalType": "bool",
         "name": "",
         "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "users",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "fullName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "role",
-        "type": "string"
       }
     ],
     "stateMutability": "view",

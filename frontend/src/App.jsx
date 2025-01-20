@@ -25,26 +25,15 @@ const App = () => {
 
   const handleGetUserDetails = async () => {
     try {
-      const userDetails = await contract.getUser();
+      const userDetails = await contract.getUser(currentAccount);
+      console.log(userDetails[0], "userd", userDetails);
       let profileData;
+      const [fullName, role, faculty, semester] = userDetails;
 
-      // Handle Admin Role separately
-      if (userDetails.fullName === "admin" && userDetails.role === "Admin") {
-        profileData = {
-          fullName: userDetails.fullName,
-          role: userDetails.role,
-        };
-      } else {
-        // Handle registered users
-        profileData = {
-          fullName: userDetails.fullName,
-          role: userDetails.role,
-        };
-      }
+      setConnectedUserDetails({ fullName, role, faculty, semester });
+      setUserRole(role);
 
-      setConnectedUserDetails(profileData);
-      setUserRole(profileData.role);
-      console.log("✅ User details fetched successfully:", profileData);
+      alert("✅ User detail fetched successfully!");
     } catch (err) {
       console.error("❌ Error fetching user details:", err.message || err);
       alert("Error fetching user details. Ensure the user is registered.");
