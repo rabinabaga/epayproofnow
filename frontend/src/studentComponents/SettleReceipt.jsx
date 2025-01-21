@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ethers } from "ethers";
 import { useBlockchainContext } from "../contractContext";
+import '../StudentAccess.css';
 
 const SettleReceipt = ({ receiptId, feeAmount }) => {
   const { contract } = useBlockchainContext();

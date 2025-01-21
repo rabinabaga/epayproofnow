@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useBlockchainContext } from "../contractContext";
 
-
 function GenerateReceiptsForm() {
   const { contract } = useBlockchainContext();
   const [formData, setFormData] = useState({
@@ -9,6 +8,7 @@ function GenerateReceiptsForm() {
     semester: "",
   });
   const [loading, setLoading] = useState(false);
+  const [receiptInfo, setReceiptInfo] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,13 +23,17 @@ function GenerateReceiptsForm() {
     setLoading(true);
 
     try {
-      // Call the generateReceiptsForFacultyAndSemester function
       const tx = await contract.generateReceiptsForFacultyAndSemester(
         formData.faculty,
         formData.semester
       );
 
       await tx.wait();
+
+      setReceiptInfo({
+        faculty: formData.faculty,
+        semester: formData.semester,
+      });
 
       alert("Receipts successfully generated!");
     } catch (error) {
@@ -41,9 +45,10 @@ function GenerateReceiptsForm() {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <h2 className="form-title">Generate Receipt for Student</h2>
+    <div className="dashboard-section">
+      <h2 className="form-title">Generate Receipts for Students</h2>
+
+      {!receiptInfo ? (
         <form onSubmit={handleSubmit} className="form">
           <div className="form-group">
             <label htmlFor="faculty" className="form-label">Faculty</label>
@@ -79,7 +84,13 @@ function GenerateReceiptsForm() {
             {loading ? "Processing..." : "Generate Receipts"}
           </button>
         </form>
-      </div>
+      ) : (
+        <div className="receipt-details">
+          <h3 className="receipt-details-title">Receipt Generation Info</h3>
+          <p><strong>Faculty:</strong> {receiptInfo.faculty}</p>
+          <p><strong>Semester:</strong> {receiptInfo.semester}</p>
+        </div>
+      )}
     </div>
   );
 }
