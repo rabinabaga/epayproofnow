@@ -1,11 +1,16 @@
+import './Homepage.css'; // Ensure the path is correct
+
 const HomepageWrapper = ({ children }) => {
   return (
-    <>
-      <h2 style={{ color: "purple" }}>Welcome to Epayproof</h2>
-      <h4>A permanent record of your college payments</h4>
-      {/* <span style={{ fontSize: "1.3rem" }}>Get Started:</span> */}
-      <span> {children}</span>
-    </>
+    <div className="homepage-wrapper">
+      <h2 className="homepage-title">WELCOME TO E-PAYPROOF</h2>
+      <h3 className="homepage-subtitle">Made For students : By students</h3>
+      <h4 className="homepage-description">
+        A permanent record of your college payments
+      </h4>
+      <div className="homepage-children">{children}</div>
+    </div>
   );
 };
+
 export default HomepageWrapper;

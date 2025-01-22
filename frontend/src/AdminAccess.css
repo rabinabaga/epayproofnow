@@ -1,120 +1,98 @@
+/* Overall Page Styling */
 body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #d8b9e7;
-    color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Vertically center the form */
+  margin: 0;
+  padding: 0;
+  background-color: #f0f4f8; /* Light background for contrast */
+  font-family: Arial, sans-serif; /* Clean, modern font */
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center vertically */
-    height: 100vh; /* Full viewport height */
-    padding: 5vh; /* Padding relative to viewport height */
-    box-sizing: border-box;
-    background: linear-gradient(135deg, #a684c3, #d8b9e7);
-}
-
-header {
-    margin-bottom: 6vh; /* Add spacing between connected info and the form */
-    text-align: center;
-}
-
-h2 {
-    font-size: 3vh; /* Slightly larger font size */
-    color: #5a005a;
-    margin-bottom: 4vh; /* Add spacing below the dashboard title */
-}
-
-.admin-area {
-    text-align: center;
-    font-size: 2.2vh; /* Slightly larger text */
-    margin-bottom: 5vh; /* Maintain spacing below this text */
-    color: #5a005a;
-}
-
-.connected-info {
-    text-align: center;
-    font-size: 2vh;
-    margin-bottom: 3vh; /* Space between this and dashboard heading */
-}
-
+/* Form Container Styles */
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 45vw; /* Reduce form width */
-    padding: 4vh;
-    background-color: white;
-    border-radius: 2vh;
-    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align the form content */
+  justify-content: center;
+  width: 8%;
+
+  padding: 20px; /* Reduce padding for a smaller size */
+  background-color: white;
+  border-radius: 1.5vh;
+  box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.2); 
+  box-sizing: border-box;
+  color: #5a005a;
+  gap: 15px; /* Space between form elements */
 }
 
+/* Label Styles */
+form label {
+  color: #1D5C7E; /* Visible label color */
+  font-size: 3.2vh; /* Slightly smaller label font */
+  font-weight: bold; /* Bold labels for clarity */
+  margin-bottom: 3vh; /* Compact spacing below label */
+}
+
+/* Input Field Styles */
 form input {
-    width: 90%; /* Reduce width for more whitespace */
-    margin-bottom: 2.5vh;
-    padding: 1.8vh;
-    font-size: 2.2vh; /* Increase font size for the text you type */
-    border: 0.3vh solid #a684c3;
-    border-radius: 1vh;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
+  width: 85%; /* Full width inside the form */
+  padding: 1.5vh; /* Compact padding inside inputs */
+  font-size: 2.8vh; /* Adjusted font size */
+  border: 0.3vh solid #6E7E85; /* Border color and size */
+  border-radius: 1vh; /* Rounded corners */
+  outline: none;
+  color: #2C2B3C; /* Text color inside input */
+  background-color: #f8f9fa; /* Light input background */
+  box-sizing: border-box; /* Consistent sizing */
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
+/* Input Placeholder Styling */
 form input::placeholder {
-    font-size: 2.2vh; /* Increase font size for placeholder text */
-    color: #a684c3; /* Lighter color for the placeholder */
-    opacity: 0.7;
+  font-size: 1.6vh; /* Placeholder text size */
+  color: #2C2B3C; /* Lighter placeholder color */
+  opacity: 0.8; /* Semi-transparent placeholder */
 }
 
+/* Input Focus Styles */
 form input:focus {
-    border-color: #5a005a;
+  border-color: #5a005a; /* Highlight border on focus */
+  background-color: #ffffff; /* Brighten background on focus */
 }
 
+/* Button Styling */
 form button {
-    width: 90%; /* Match the input fields */
-    padding: 1.8vh;
-    font-size: 1.8vh;
-    color: white;
-    background-color: #5a005a;
-    border: none;
-    border-radius: 1vh;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  width: 60%; /* Match input fields width */
+  padding: 1.4vh; /* Adjusted button padding */
+  font-size: 2.7vh; /* Button font size */
+  font-weight: bold; /* Bold button text */
+  color: white; /* Button text color */
+  background-color: #1F3E6A; /* Button background color */
+  border: none; /* No border */
+  border-radius: 1vh; /* Rounded button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
 }
 
 form button:hover {
-    background-color: #7b3e9e;
+  background-color: #6E75A8; /* Lighter hover effect */
+  transform: scale(1.03); /* Slight zoom on hover */
 }
 
-#register_button {
-    width: 30%;
+/* Form Section Spacing */
+form div {
+  display: flex;
+  flex-direction: column; /* Stack labels and inputs vertically */
+  gap: 0.8vh; /* Space between labels and inputs */
+  width: 100%; /* Uniform width for sections */
 }
 
-/* Styling for the Register buttons */
-.register-buttons {
-    display: flex;
-    justify-content: center; /* Center the buttons */
-    gap: 2vh; /* Space between the buttons */
-    margin-bottom: 4vh; /* Add spacing below the buttons */
-}
-
-.register-buttons button {
-    font-size: 2vh;
-    padding: 1.2vh 3vh; /* Adjust padding for better visuals */
-    border-radius: 2vh;
-    border: none;
-    background-color: #5a005a; /* Main color */
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.register-buttons button:hover {
-    background-color: #7b3e9e; /* Lighter hover effect */
-    transform: scale(1.05); /* Slight zoom on hover */
+/* Header Styling (Optional) */
+h1 {
+  font-size: 7vh; /* Adjusted font size for the header */
+  color: #f0f4f8; /* Header text color */
+  margin-bottom: 2vh; /* Spacing below the header */
+  text-align: center; /* Centered text */
 }

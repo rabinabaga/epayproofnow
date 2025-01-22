@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap'); 
+
+body {
+  /* Static gradient background using the provided colors */
+  background: linear-gradient(135deg, #213363, #1F3765, #314A70, #1D5D7F, #138092);
+  color: #ffffff; /* White text for contrast */
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Lora', serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.homepage-wrapper {
+  text-align: center;
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0%;
+}
+
+.homepage-title {
+  font-family: 'Futura', sans-serif; /* Futura for h1 */
+  font-weight: bold; 
+  color: #FFFFFF; /* White for elegance and contrast */
+  font-size: 4rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.homepage-subtitle {
+  font-family: 'Lora', serif; 
+  color: #E0E0E0; /* Light Gray for a softer look */
+  font-size: 2rem;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+.homepage-description {
+  font-family: 'Lora', serif; 
+  color: #B0C4DE; /* Light Steel Blue for a calmer tone */
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  line-height: 1.6; /* Improved readability */
+  animation: fadeInUp 1.4s ease-in-out;
+}
+
+.homepage-children {
+  margin-top: 20px;
+  animation: fadeInUp 1.6s ease-in-out;
+}
+
+button {
+  font-family: 'Lora', serif;
+  color: #1F3E6A; 
+  color: #ffffff; /* White text for clarity */
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  transform: translateY(-5px);
+  background-color: #6E75A8;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

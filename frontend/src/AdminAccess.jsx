@@ -54,7 +54,7 @@ const AdminAccess = () => {
 
   return (
     <div>
-      <h2>Register User</h2>
+      <h1>USER REGISTRATION</h1>
       <div>
         <button onClick={() => setUserType("student")}>Register Student</button>
         <button onClick={() => setUserType("accountant")}>
