@@ -1,0 +1,112 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full-screen height */
+    margin: 0;
+    background-color: #f0f4f8; /* Light background */
+    font-family: Arial, sans-serif; /* Modern font */
+  }
+  
+  /* Form Container Styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%; /* Responsive form width */
+    max-width: 500px; /* Limit maximum width */
+    padding: 2rem; /* Space inside the form */
+    background-color: white;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    gap: 1rem; /* Space between form elements */
+    color: #5a005a;
+  }
+  
+  /* Label Styles */
+  form label {
+    color: #1d5c7e; /* Visible label color */
+    font-size: 1rem; /* Label font size */
+    font-weight: bold; /* Bold text */
+    margin-bottom: 0.5rem; /* Space below label */
+  }
+  
+  /* Input Field Styles */
+  form input {
+    width: 85%; /* Full width inside form */
+    padding: 0.4rem; /* Input padding */
+    font-size: 1rem; /* Adjusted font size */
+    border: 1px solid #6e7e85; /* Border color */
+    border-radius: 8px; /* Rounded corners */
+    outline: none; /* Remove focus outline */
+    background-color: #f8f9fa; /* Light background */
+    color: #2c2b3c; /* Input text color */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Input Placeholder Styling */
+  form input::placeholder {
+    font-size: 0.4rem; /* Placeholder text size */
+    color: #aaa; /* Lighter placeholder */
+    opacity: 0.8; /* Semi-transparent placeholder */
+  }
+  
+  /* Input Focus Styles */
+  form input:focus {
+    border-color: #5a005a; /* Highlight border */
+    background-color: #fff; /* Bright background */
+  }
+  
+  /* Button Styles */
+  form button {
+    width: 60%; /* Full width button */
+    padding: 0.6rem; /* Button padding */
+    font-size: 1.2rem; /* Button text size */
+    font-weight: bold; /* Bold text */
+    color: white; /* Button text color */
+    background-color: #1f3e6a; /* Button background color */
+    border: none; /* Remove borders */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Button Hover Effects */
+  form button:hover {
+    background-color: #6e75a8; /* Hover background */
+    transform: scale(1.03); /* Slight zoom */
+  }
+  
+  /* Header Styling (Optional) */
+  h1 {
+    font-size: 2rem; /* Header font size */
+    color: #1d5c7e; /* Header text color */
+    margin-bottom: 1.5rem; /* Space below header */
+    text-align: center; /* Center alignment */
+  }
+  
+  /* Responsive Design for Smaller Screens */
+  @media (max-width: 768px) {
+    form {
+      width: 90%; /* Smaller form width */
+      padding: 1.5rem; /* Adjusted padding */
+    }
+  
+    form button {
+      font-size: 1rem; /* Smaller button font size */
+    }
+  
+    h1 {
+      font-size: 1.9rem; /* Smaller header size */
+      color: #fff
+    }
+  }
+  
