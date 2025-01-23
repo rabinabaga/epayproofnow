@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #d8b9e7;
-  color: #333;
+  background-color: #bac7e8;
+  color: #071f41;
 }
 
 /* Main container for the entire content */
@@ -15,7 +15,7 @@ body {
   height: 100vh; /* Full viewport height */
   padding: 2vh;
   box-sizing: border-box;
-  background: linear-gradient(135deg, #a684c3, #d8b9e7);
+  background: linear-gradient(135deg,#071f41, #bac7e8);
   margin: 0 auto;
   overflow-y: auto; /* Allow vertical scrolling */
   position: relative; /* Ensure form and buttons stay within the container */
@@ -32,8 +32,8 @@ body {
 button {
   padding: 1.5vh 2vw;
   font-size: 1.8vh;
-  color: white;
-  background-color: #5a005a;
+  color: #bac7e8;
+  background-color: #071f41;
   border: none;
   border-radius: 1vh;
   cursor: pointer;
@@ -41,16 +41,16 @@ button {
 }
 
 button:hover {
-  background-color: #7b3e9e;
+  background-color: #0a2d5f;
 }
 
 /* Hide scrollbar while keeping scrolling enabled */
 .form-container {
   width: 100%; /* Full width inside the container */
   max-width: 40vw; /* Optional: Limit width for larger screens */
-  background-color: white;
+  background-color: #e2eafe;
   border-radius: 1vh;
-  box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1vh 2vh #071f41;
   padding: 3vh;
   box-sizing: border-box;
   overflow-y: scroll; /* Allow vertical scrolling */
@@ -72,7 +72,7 @@ button:hover {
   margin-bottom: 2vh;
   padding: 1.5vh;
   font-size: 1.8vh;
-  border: 0.3vh solid #a684c3;
+  border: 0.3vh solid #215eb3;
   border-radius: 1vh;
   outline: none;
   box-sizing: border-box;
@@ -80,7 +80,7 @@ button:hover {
 }
 
 .form-container input:focus {
-  border-color: #5a005a;
+  border-color:#071f41;
 }
 
 /* Labels styling */
@@ -88,7 +88,7 @@ button:hover {
   display: block;
   font-size: 1.8vh;
   margin-bottom: 1vh;
-  color: #333;
+  color:#071f41;
 }
 
 /* Submit button styling */
@@ -96,8 +96,8 @@ button:hover {
   width: 100%;
   padding: 1.5vh;
   font-size: 1.8vh;
-  color: white;
-  background-color: #5a005a;
+  color: #fafcff;
+  background-color: #071f41;
   border: none;
   border-radius: 1vh;
   cursor: pointer;
@@ -105,5 +105,5 @@ button:hover {
 }
 
 .form-container button:hover {
-  background-color: #7b3e9e;
+  background-color: #174d9a;
 }

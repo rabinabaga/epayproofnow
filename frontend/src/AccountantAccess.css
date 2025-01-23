@@ -11,9 +11,9 @@
     gap: 20px;
     overflow-y: auto; /* Enable vertical scrolling */
     overflow-x: hidden; /* Disable horizontal scrolling */
-    border: 2px solid #2c0745;
+    border: 2px solid #071f41;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: #e3eafc;
     padding: 20px;
 
     /* Completely hide scrollbar */
@@ -30,10 +30,10 @@
 /* Each Section */
 .dashboard-section {
     padding: 15px;
-    background-color: #fff;
-    border: 2px solid #ccc;
+    background-color: #f3f6fd;
+    border: 2px solid #13478f;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px #071f41;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -44,7 +44,7 @@
 .section-title, .form-title {
     margin-bottom: 10px;
     font-size: 1.5rem;
-    color: #333;
+    color:#071f41;
     text-align: center;
 }
 
@@ -59,13 +59,13 @@
 .output-title, .receipt-details-title {
     margin-bottom: 10px;
     font-size: 1.25rem;
-    color: #155724;
+    color: #071f41;
 }
 
 .output-info p, .receipt-details p {
     margin: 5px 0;
     font-size: 1rem;
-    color: #155724;
+    color: #071f41;
 }
 
 /* Form Styling */
@@ -83,20 +83,20 @@
 
 .form-label {
     font-weight: bold;
-    color: #555;
+    color: #071f41;
 }
 
 .form-input {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid#bac7e8;
     border-radius: 5px;
 }
 
 .form-button {
     padding: 12px;
     font-size: 1rem;
-    background-color: #007bff;
+    background-color:#071f41;
     color: white;
     border: none;
     border-radius: 5px;
@@ -104,16 +104,16 @@
 }
 
 .form-button:hover {
-    background-color: #0056b3;
+    background-color: #0f3e81;
 }
 
 .form-button:disabled {
-    background-color: #ccc;
+    background-color:#bac7e8;
     cursor: not-allowed;
 }
 
 .form-button-loading {
-    background-color: #6c757d;
+    background-color:#0d3368;
     cursor: wait;
 }
 

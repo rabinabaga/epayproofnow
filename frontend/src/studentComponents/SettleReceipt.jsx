@@ -30,11 +30,11 @@ const SettleReceipt = ({ receiptId, feeAmount }) => {
 
   return (
     <div>
-      <h2>Settle Receipt</h2>
+      <h2>Pay now</h2>
 
       <div>
         <button onClick={handleSettleReceipt} disabled={isLoading}>
-          {isLoading ? "Processing..." : "Settle Receipt"}
+          {isLoading ? "Processing..." : "Pay"}
         </button>
       </div>
       {transactionStatus && <p>{transactionStatus}</p>}

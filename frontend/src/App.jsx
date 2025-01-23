@@ -61,6 +61,10 @@ const App = () => {
 
   return (
     <>
+      {/* <div className="logo-container">
+        <img src={logo} alt="EpayProof Logo" className="app-logo" />
+      </div> */}
+      
       {isConnected ? (
         <p id="account_no">Connected account: {currentAccount}</p>
       ) : (

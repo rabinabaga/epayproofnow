@@ -6,9 +6,10 @@
     margin-top: 12vh;
 }
 
-#layout_heading{
+.layout_heading{
     margin-bottom: 5vh;
     animation: fadeIn 0.4s ease-in-out;
+    color:#f9fcff;
 }
 
 /****************************Student*************************/
@@ -30,10 +31,7 @@
   /* background-color: #f9f9f9; */
 } 
 .Alayout_heading {
-  /* background-color: #004080;
-  color: white;
-  padding: 1rem;
-  text-align: center; */
+  color:#f9fcff;
   margin-top: 15vh;
   animation: fadeIn 0.4s ease-in-out;
 }
