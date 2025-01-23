@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ethers } from "ethers";
 import { useBlockchainContext } from "../contractContext";
+import '../Student.css';
 
 const SettleReceipt = ({ receiptId, feeAmount }) => {
   const { contract } = useBlockchainContext();
@@ -29,11 +30,11 @@ const SettleReceipt = ({ receiptId, feeAmount }) => {
 
   return (
     <div>
-      <h2>Settle Receipt</h2>
+      <h2>Pay now</h2>
 
       <div>
         <button onClick={handleSettleReceipt} disabled={isLoading}>
-          {isLoading ? "Processing..." : "Settle Receipt"}
+          {isLoading ? "Processing..." : "Pay"}
         </button>
       </div>
       {transactionStatus && <p>{transactionStatus}</p>}
