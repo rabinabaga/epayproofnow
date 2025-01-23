@@ -1,0 +1,106 @@
+/* Overall Page Styling */
+body {
+    display: flex;
+    flex-direction: column; /* Stack header and form vertically */
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8; /* Light background for contrast */
+    font-family: Arial, sans-serif; /* Clean, modern font */
+}
+
+/* Header Styling */
+h1 {
+    font-size: 6vh; /* Adjusted font size for the header */
+    color: #ffffff; /* Header text color */
+    margin: 1vh 0; /* Minimal vertical spacing */
+    margin-bottom: 20px; /* Reduced spacing */
+    text-align: center; /* Centered text */
+}
+
+/* Form Container Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align form elements */
+    justify-content: center;
+    width: 100%; /* Adjusted to fit smaller screens */
+    padding: 5vh; /* Compact padding to save space */
+    background-color: white; /* White background for form contrast */
+    border-radius: 1.5vh; /* Rounded corners */
+    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    color: #5a005a; /* Text color */
+    gap: 0vh; /* Space between form elements */
+    box-sizing: border-box; /* Consistent sizing */
+}
+
+/* Label Styles */
+form label {
+    color: #1D5C7E; /* Visible label color */
+    font-size: 3vh; /* Adjusted label font size */
+    font-weight: bold; /* Bold labels for clarity */
+    margin-bottom: 2vh; /* Compact spacing below label */
+}
+
+/* Input Field Styles */
+form input {
+    width: 90%; /* Full width inside the form */
+    padding: 1.2vh; /* Compact padding inside inputs */
+    font-size: 2.4vh; /* Adjusted font size */
+    border: 0.3vh solid #6E7E85; /* Border color and size */
+    border-radius: 1vh; /* Rounded corners */
+    outline: none;
+    color: #000; /* Text color inside input */
+    background-color: #f8f9fa; /* Light input background */
+    box-sizing: border-box; /* Consistent sizing */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Input Placeholder Styling */
+form input::placeholder {
+    font-size: 2.4vh; /* Placeholder text size */
+    color: #1F3E6A; /* Lighter placeholder color */
+    opacity: 0.8; /* Semi-transparent placeholder */
+}
+
+/* Input Focus Styles */
+form input:focus {
+    border-color: #1F3E6A; /* Highlight border on focus */
+    background-color: #ffffff; /* Brighten background on focus */
+}
+
+/* Button Styling */
+form button {
+    width: 60%; /* Adjusted button width */
+    padding: 1.5vh; /* Adjusted button padding */
+    margin-bottom: 0%; /* Reduce the space below the button */
+    font-size: 3vh; /* Button font size */
+    font-weight: bold; /* Bold button text */
+    color: white; /* Button text color */
+    background-color: #1F3E6A; /* Button background color */
+    border: none; /* No border */
+    border-radius: 1vh; /* Rounded button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+}
+
+form button:hover {
+    background-color: #1D5C7E; /* Lighter hover effect */
+    transform: scale(1.03); /* Slight zoom on hover */
+}
+
+/* Form Section Spacing */
+form div {
+    display: flex;
+    flex-direction: column; /* Stack labels and inputs vertically */
+    gap: 1vh; /* Space between labels and inputs */
+    width: 100%; /* Uniform width for sections */
+}
+
+@media (max-width: 768px) {
+  
+    form {
+        width: 90%; /* Reduce form width on smaller screens */
+    }
+}

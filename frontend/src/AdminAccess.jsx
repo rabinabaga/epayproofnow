@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useBlockchainContext } from "./contractContext";
+import './Admin.css'
 
 const AdminAccess = () => {
   const { contract } = useBlockchainContext();
@@ -53,7 +54,6 @@ const AdminAccess = () => {
 
   return (
     <div>
-      <h2>Register User</h2>
       <div>
         <button onClick={() => setUserType("student")}>Register Student</button>
         <button onClick={() => setUserType("accountant")}>
