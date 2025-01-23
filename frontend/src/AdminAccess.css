@@ -1,89 +1,109 @@
+/* General body styling */
 body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #d8b9e7;
-    color: #333;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100vh; /* Full viewport height */
-    padding-top: 1vh;
-    padding-left: 5vh; /* Padding relative to viewport height */
-    padding-right: 5vh;
-    padding-bottom: 5vh;
-    box-sizing: border-box;
-    background: linear-gradient(135deg, #a684c3, #d8b9e7);
-    */
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #bac7e8;
+  color: #071f41;
+}
 
-    width: 100%;
-    height: 100%;
-    height: 70vh;
-    width: 90vh;
-    margin: 0 auto; /* Center the container */
-  }
-  
-  h2 {
-    font-size: 2.5vh; /* Font size relative to viewport height */
-    color: #5a005a;
-    margin-bottom: 3vh; /* Margin relative to viewport height */
-    text-align: center;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%; /* Use full width of the container */
-    max-width: 50vw; /* Limit form width to 50% of viewport width */
-    padding: 4vh; /* Padding relative to viewport height */
-    background-color: white;
-    border-radius: 2vh; /* Rounded corners proportional to viewport height */
-    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.3); /* Shadow size relative to viewport height */
-  }
-  
-  form input {
-    width: 100%;
-    margin-bottom: 2vh; /* Spacing relative to viewport height */
-    padding: 1.5vh; /* Padding inside input fields */
-    font-size: 1.8vh; /* Input text size relative to viewport height */
-    border: 0.3vh solid #a684c3; /* Border size relative to viewport height */
-    border-radius: 1vh; /* Rounded corners proportional to viewport height */
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-  }
-  
-  form input:focus {
-    border-color: #5a005a;
-  }
-  
-  form button {
-    width: 100%;
-    padding: 1.5vh; /* Button padding relative to viewport height */
-    font-size: 1.8vh; /* Button text size relative to viewport height */
-    color: white;
-    background-color: #5a005a;
-    border: none;
-    border-radius: 1vh; /* Rounded corners proportional to viewport height */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  form button:hover {
-    background-color: #7b3e9e;
-  }
-  
-  .admin-area {
-    text-align: center;
-    font-size: 2vh; /* Slightly larger text relative to viewport height */
-    margin-bottom: 5vh; /* Spacing relative to viewport height */
-    color: #5a005a;
-  }
-  
-#register_botton{
-  width: 30%;
+/* Main container for the entire content */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh; /* Full viewport height */
+  padding: 2vh;
+  box-sizing: border-box;
+  background: linear-gradient(135deg,#071f41, #bac7e8);
+  margin: 0 auto;
+  overflow-y: auto; /* Allow vertical scrolling */
+  position: relative; /* Ensure form and buttons stay within the container */
+}
+
+/* Fixed button area at the top */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2vw; /* Space between buttons */
+  margin-bottom: 3vh; /* Space below the buttons */
+}
+
+button {
+  padding: 1.5vh 2vw;
+  font-size: 1.8vh;
+  color: #bac7e8;
+  background-color: #071f41;
+  border: none;
+  border-radius: 1vh;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0a2d5f;
+}
+
+/* Hide scrollbar while keeping scrolling enabled */
+.form-container {
+  width: 100%; /* Full width inside the container */
+  max-width: 40vw; /* Optional: Limit width for larger screens */
+  background-color: #e2eafe;
+  border-radius: 1vh;
+  box-shadow: 0 1vh 2vh #071f41;
+  padding: 3vh;
+  box-sizing: border-box;
+  overflow-y: scroll; /* Allow vertical scrolling */
+  max-height: 80vh; /* Prevent form from exceeding container height */
+
+  /* Hide scrollbar for Webkit-based browsers (Chrome, Edge, Safari) */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.form-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+
+/* Input fields styling */
+.form-container input {
+  width: 100%;
+  margin-bottom: 2vh;
+  padding: 1.5vh;
+  font-size: 1.8vh;
+  border: 0.3vh solid #215eb3;
+  border-radius: 1vh;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-container input:focus {
+  border-color:#071f41;
+}
+
+/* Labels styling */
+.form-container label {
+  display: block;
+  font-size: 1.8vh;
+  margin-bottom: 1vh;
+  color:#071f41;
+}
+
+/* Submit button styling */
+.form-container button {
+  width: 100%;
+  padding: 1.5vh;
+  font-size: 1.8vh;
+  color: #fafcff;
+  background-color: #071f41;
+  border: none;
+  border-radius: 1vh;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #174d9a;
 }

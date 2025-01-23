@@ -12,10 +12,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, #e4d3ed, #b395d6);
-    color: #333;
+    background: linear-gradient(to bottom,#071f41, #bac7e8);
+    color: #071f41;
 }
 
+.logo-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000; /* Ensure it stays on top */
+}
+  
+.app-logo {
+   height: 50px; /* Adjust size */
+   width: auto;
+}
+  
 #account_no,
 #user_role {
     position: absolute;
@@ -23,7 +35,7 @@ body {
     right: 15px; /* Distance from the right */
     font-size: 15px; /* Font size */
     font-weight: bold; /* Make text bold */
-    color: #23003b; /* Attractive color */
+    color: #d1e2f9; /* Attractive color */
     font-family: "Arial", sans-serif; /* Ensure readability */
     line-height: 1.5; /* Space between lines if content wraps */
     text-align: right; /* Align text to the right */
@@ -37,14 +49,21 @@ body {
 
 .box {
     width: 100%;
-    height: 100%;
-    max-height: 100vh;
-    max-width: 100vw;
+    min-height: 100vh; /* Ensure the box spans the entire viewport */
+    max-width: 100vw; /* Prevent horizontal overflow */
+    display: flex; /* Enable flexible layout */
+    flex-direction: column; /* Stack child elements vertically */
+    justify-content: flex-start; /* Align content at the top */
+    align-items: center; /* Center child elements horizontally */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom,#071f41, #bac7e8); /* Optional: Set a background color */
 }
 
 /* Central container styling */
 .container {
-    width: 70%;
+    width: 100%;
     height: 100%;
     max-width: 80vw;
     max-height: 70vh;
@@ -52,11 +71,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid #5a005a;
+    border: 2px solid #071f41;
     border-radius: 15px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0px 5px 20px rgba(90, 0, 90, 0.5);
+    background: #bac7e8;
+    box-shadow: 0px 5px 20px #071f41;
     animation: fadeIn 0.4s ease-in-out;
 }
 
@@ -70,9 +89,16 @@ body {
 }
 
 /* Heading styles */
-h1 {
+/* h1 {
     font-size: 2rem;
-    color: #4b0082;
+    color:#071f41;
+    font-family: 'Cursive', Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+} */
+
+#wel {
+    font-size: 2rem;
+    color:#071f41;
     font-family: 'Cursive', Arial, Helvetica, sans-serif;
     margin-bottom: 10px;
 }
@@ -81,30 +107,30 @@ h1 {
 p {
     font-size: 1.2rem;
     margin-bottom: 2px;
-    color: #4b0082;
+    color:#071f41;
     line-height: 1.5;
 }
 
 /* Connect MetaMask button */
 button {
-    color: white;
-    background-color: #5a005a;
+    color: #f3f6fc;
+    background-color: #071f41;
     padding: 0.8rem 1.2rem;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
     transition: all 0.3s ease;
-    box-shadow: 0px 4px 10px rgba(90, 0, 90, 0.3);
+    box-shadow: 0px 4px 10px #071f41;
 }
 
 button:hover {
-    background-color: #7d007d;
+    background-color: #0e3772;
     transform: translateY(-2px);
 }
 
 button:active {
-    background-color: #4b004b;
+    background-color: #071f41;
     transform: translateY(1px);
 }
 

@@ -1,72 +1,110 @@
+import React, { useState } from "react";
 import { useBlockchainContext } from "./contractContext";
-import EnterFeeForm from "./enterFeeForm";
-import React, { useState, useEffect } from "react";
-import { ethers } from "ethers";
+import GenerateReceiptsForm from "./accountantComponents/GenerateReceipts";
+import "./AccountantAccess.css";
 
 const AccountantAccess = () => {
-  const { connectedUserDetails, contract } = useBlockchainContext();
+  const { contract } = useBlockchainContext();
+  const [feeSet, setFeeSet] = useState(false);
+  const [feeInfo, setFeeInfo] = useState(null); // Store fee info
+  const [formData, setFormData] = useState({
+    faculty: "",
+    semester: "",
+    feeAmount: "",
+  });
 
-  const [feeList, setFeeList] = useState([]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-  const fetchFees = async () => {
-    if (!connectedUserDetails) {
-      alert("Please connect MetaMask first!");
-      return;
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      const fees = await contract.getFees();
+      const tx = await contract.setFee(
+        formData.faculty,
+        formData.semester,
+        formData.feeAmount
+      );
 
-      const processedFees = fees.map((fee) => {
-        const date = new Date(
-          Number(fee.generatedAt) * 1000
-        ).toLocaleDateString();
-        return {
-          faculty: fee.faculty,
-          semester: fee.semester,
-          feeAmount: ethers.formatUnits(fee.feeAmount, "ether"), // Convert to ETH
-          generatedAt: date,
-        };
-      });
+      await tx.wait();
 
-      setFeeList(processedFees);
-
-      alert("Fees fetched successfully");
+      setFeeSet(true); // Mark fee as set
+      setFeeInfo({ ...formData }); // Save fee info
+      alert("Fee successfully set!");
     } catch (error) {
-      console.error("Error fetching fees:", error);
+      console.error("Error setting fee:", error);
+      alert("Failed to set fee. See console for details.");
     }
   };
+
   return (
-    <div>
-      <h3>Accountant only area</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <td>{connectedUserDetails.fullName}</td>
-        </tbody>
-      </table>
-      <EnterFeeForm />
-      <button onClick={fetchFees}>Fetch fees</button>
-      <h2>Fee Records</h2>
-      {feeList.length === 0 ? (
-        <p>No fees available</p>
-      ) : (
-        <ul>
-          {feeList.map((fee, index) => (
-            <li key={index}>
-              <p>Faculty: {fee.faculty}</p>
-              <p>Semester: {fee.semester}</p>
-              <p>Fee Amount: {fee.feeAmount} ETH</p>
-              <p>Generated At: {fee.generatedAt}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="dashboard-container">
+      {/* Section: Set Fee */}
+      <div className="dashboard-section">
+        <h2 className="section-title">Set Student Fee Amount</h2>
+
+        {!feeSet ? (
+          <form onSubmit={handleSubmit} className="form">
+            <div className="form-group">
+              <label htmlFor="faculty" className="form-label">Faculty</label>
+              <input
+                type="text"
+                id="faculty"
+                name="faculty"
+                value={formData.faculty}
+                onChange={handleChange}
+                required
+                className="form-input"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="semester" className="form-label">Semester</label>
+              <input
+                type="text"
+                id="semester"
+                name="semester"
+                value={formData.semester}
+                onChange={handleChange}
+                required
+                className="form-input"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="feeAmount" className="form-label">Fee Amount (in Wei)</label>
+              <input
+                type="number"
+                id="feeAmount"
+                name="feeAmount"
+                value={formData.feeAmount}
+                onChange={handleChange}
+                required
+                className="form-input"
+              />
+            </div>
+
+            <button type="submit" className="form-button">Set Fee</button>
+          </form>
+        ) : (
+          <div className="output-info">
+            <h3 className="output-title">Fee Details</h3>
+            <p><strong>Faculty:</strong> {feeInfo.faculty}</p>
+            <p><strong>Semester:</strong> {feeInfo.semester}</p>
+            <p><strong>Fee Amount:</strong> {feeInfo.feeAmount} Wei</p>
+          </div>
+        )}
+      </div>
+
+      {/* Section: Generate Receipts */}
+      {feeSet && <GenerateReceiptsForm />}
     </div>
   );
 };
+
 export default AccountantAccess;
