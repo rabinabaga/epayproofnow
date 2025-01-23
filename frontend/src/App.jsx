@@ -8,6 +8,7 @@ import { ethers } from "ethers";
 import RoleBasedNavigation from "./roleBasedNavigation";
 import { useBlockchainContext } from "./contractContext";
 import HomepageWrapper from "./HompageWrapper";
+import './App.css';
 
 const App = () => {
   const {
