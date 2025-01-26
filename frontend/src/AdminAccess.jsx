@@ -53,76 +53,82 @@ const AdminAccess = () => {
   };
 
   return (
+
     <div>
       <div>
+
         <button onClick={() => setUserType("student")}>Register Student</button>
         <button onClick={() => setUserType("accountant")}>
           Register Accountant
         </button>
       </div>
 
+      {/* Form section */}
       {userType && (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>
-              Address:
-              <input
-                type="text"
-                name="userAddress"
-                value={formData.userAddress}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Full Name:
-              <input
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
+        <div className="form-container">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>
+                Address:
+                <input
+                  type="text"
+                  name="userAddress"
+                  value={formData.userAddress}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Full Name:
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+            </div>
 
-          {userType === "student" && (
-            <>
-              <div>
-                <label>
-                  Semester:
-                  <input
-                    type="text"
-                    name="semester"
-                    value={formData.semester}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
-              </div>
-              <div>
-                <label>
-                  Faculty:
-                  <input
-                    type="text"
-                    name="faculty"
-                    value={formData.faculty}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
-              </div>
-            </>
-          )}
+            {userType === "student" && (
+              <>
+                <div>
+                  <label>
+                    Semester:
+                    <input
+                      type="text"
+                      name="semester"
+                      value={formData.semester}
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    Faculty:
+                    <input
+                      type="text"
+                      name="faculty"
+                      value={formData.faculty}
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+              </>
+            )}
 
-          <button type="submit">
-            Register {userType.charAt(0).toUpperCase() + userType.slice(1)}
-          </button>
-        </form>
+            <button type="submit">
+              Register {userType.charAt(0).toUpperCase() + userType.slice(1)}
+            </button>
+          </form>
+        </div>
       )}
     </div>
   );
 };
+
 export default AdminAccess;

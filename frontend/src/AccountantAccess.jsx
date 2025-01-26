@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useBlockchainContext } from "./contractContext";
 import React, { useState } from "react";
 import { ethers } from "ethers";
@@ -7,6 +8,8 @@ import './Acc.css'
 
 const AccountantAccess = () => {
   const { contract } = useBlockchainContext();
+  const [feeSet, setFeeSet] = useState(false);
+  const [feeInfo, setFeeInfo] = useState(null); // Store fee info
   const [formData, setFormData] = useState({
     faculty: "",
     semester: "",
@@ -14,7 +17,6 @@ const AccountantAccess = () => {
   });
   const [submitted, setSubmitted] = useState(false); // Tracks submission status
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -23,7 +25,6 @@ const AccountantAccess = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,13 +36,12 @@ const AccountantAccess = () => {
       );
 
       await tx.wait();
+
       setSubmitted(true); // Set submitted to true upon success
-      alert("Fee successfully set!");
-    } catch (error) {
-      console.error("Error setting fee:", error);
-      alert("Failed to set fee. See console for details.");
-    }
-  };
+
+
+      setFeeSet(true); // Mark fee as set
+      setFeeInfo({ ...formData }); // Save fee info
 
   return (
     <div>
@@ -93,6 +93,7 @@ const AccountantAccess = () => {
           </form>
         </div>
       )}
+    
     </div>
   );
 };

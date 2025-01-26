@@ -1,14 +1,18 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { ethers } from "ethers";
 import StudentAccess from "./StudentAccess";
 import AccountantAccess from "./AccountantAccess";
 import AdminLayout from "./layout/AdminLayout";
+import AccountantLayout from "./layout/AccountantLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminAccess from "./AdminAccess";
-import { ethers } from "ethers";
+import StudentLayout from "./layout/StudentLayout"; // Import StudentLayout
 import RoleBasedNavigation from "./roleBasedNavigation";
 import { useBlockchainContext } from "./contractContext";
+
 import HomepageWrapper from "./HompageWrapper";
 import './App.css';
+
 
 const App = () => {
   const {
@@ -26,24 +30,19 @@ const App = () => {
   const handleGetUserDetails = async () => {
     try {
       const userDetails = await contract.getUser(currentAccount);
-      console.log(userDetails[0], "userd", userDetails);
-      let profileData;
       const [fullName, role, faculty, semester] = userDetails;
 
       setConnectedUserDetails({ fullName, role, faculty, semester });
       setUserRole(role);
 
+      console.log("✅ User details fetched:", { fullName, role, faculty, semester });
       alert("✅ User detail fetched successfully!");
     } catch (err) {
-      console.error("Error fetching user details :", err.reason);
-      alert("❌ Error fetching user details");
+      console.error("❌ Error fetching user details:", err.message || err);
+      alert("Error fetching user details. Ensure the user is registered.");
     }
   };
-  console.log(connectedUserDetails, "connectedUserDetailsf", userRole);
 
-  // Initialize provider, signer, and contract
-
-  //connect to metamask, fetch user, check role set role
   const connectMetaMask = async () => {
     try {
       if (!window.ethereum) {
@@ -54,44 +53,47 @@ const App = () => {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const accounts = await provider.send("eth_requestAccounts", []);
       setCurrentAccount(accounts[0]);
+
       setIsConnected(true);
       await handleGetUserDetails();
     } catch (error) {
-      console.error("Error connecting to MetaMask:", error);
+      console.error("Error connecting to MetaMask:", error.message || error);
+      alert("❌ Error connecting to MetaMask. Check console for details.");
     }
   };
+
   return (
     <>
+      {/* <div className="logo-container">
+        <img src={logo} alt="EpayProof Logo" className="app-logo" />
+      </div> */}
+      
       {isConnected ? (
-        <p>Connected account: {currentAccount}</p>
+        <p id="account_no">Connected account: {currentAccount}</p>
       ) : (
-        <HomepageWrapper>
-          <button
-            style={{
-              color: "white",
-              backgroundColor: "purple",
-              width: "max-content",
-              padding: "0.6 rem",
-              border: "none",
-            }}
-            onClick={connectMetaMask}
-          >
+        <div className="container">
+          <h1 id="wel">Welcome to Epayproof</h1>
+          <p id="intro">A permanent record of your college payments</p>
+          <button id="meta" onClick={connectMetaMask}>
             Connect MetaMask
           </button>
-        </HomepageWrapper>
+        </div>
       )}
       {connectedUserDetails?.role && (
-        <p>Connected as: {userRole || "Unknown"}</p>
+        <p id="user_role">Connected as: {userRole || "Unknown"}</p>
       )}
 
       {connectedUserDetails && (
-        <div>
+        <div className="box">
           <Router>
             <Routes>
+              {/* Default Navigation Based on Role */}
               <Route
                 index
                 element={<RoleBasedNavigation userRole={userRole} />}
-              ></Route>
+              />
+
+              {/* Admin Routes */}
               <Route element={<AdminLayout />}>
                 <Route
                   path="/admin/dashboard"
@@ -100,24 +102,32 @@ const App = () => {
                       <AdminAccess />
                     </ProtectedRoute>
                   }
-                ></Route>
+                />
               </Route>
-              <Route
-                path="/accountant/dashboard"
-                element={
-                  <ProtectedRoute role="Accountant" currentRole={userRole}>
-                    <AccountantAccess />
-                  </ProtectedRoute>
-                }
-              ></Route>
-              <Route
-                path="/student/dashboard"
-                element={
-                  <ProtectedRoute role="Student" currentRole={userRole}>
-                    <StudentAccess />
-                  </ProtectedRoute>
-                }
-              ></Route>
+
+              {/* Accountant Routes */}
+              <Route element={<AccountantLayout />}>
+                <Route
+                  path="/accountant/dashboard"
+                  element={
+                    <ProtectedRoute role="Accountant" currentRole={userRole}>
+                      <AccountantAccess />
+                    </ProtectedRoute>
+                  }
+                />
+              </Route>
+
+              {/* Student Routes */}
+              <Route element={<StudentLayout />}>
+                <Route
+                  path="/student/dashboard"
+                  element={
+                    <ProtectedRoute role="Student" currentRole={userRole}>
+                      <StudentAccess />
+                    </ProtectedRoute>
+                  }
+                />
+              </Route>
             </Routes>
           </Router>
         </div>

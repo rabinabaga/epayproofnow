@@ -8,6 +8,7 @@ function GenerateReceiptsForm() {
     semester: "",
   });
   const [loading, setLoading] = useState(false);
+  const [receiptInfo, setReceiptInfo] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,13 +23,17 @@ function GenerateReceiptsForm() {
     setLoading(true);
 
     try {
-      // Call the generateReceiptsForFacultyAndSemester function
       const tx = await contract.generateReceiptsForFacultyAndSemester(
         formData.faculty,
         formData.semester
       );
 
       await tx.wait();
+
+      setReceiptInfo({
+        faculty: formData.faculty,
+        semester: formData.semester,
+      });
 
       alert("Receipts successfully generated!");
     } catch (error) {
@@ -40,37 +45,53 @@ function GenerateReceiptsForm() {
   };
 
   return (
+
     <div>
       <h2>Generate Receipts for Students</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>
             Faculty:
+
             <input
               type="text"
+              id="faculty"
               name="faculty"
               value={formData.faculty}
               onChange={handleChange}
               required
+              className="form-input"
             />
-          </label>
-        </div>
-        <div>
-          <label>
-            Semester:
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="semester" className="form-label">Semester</label>
             <input
               type="text"
+              id="semester"
               name="semester"
               value={formData.semester}
               onChange={handleChange}
               required
+              className="form-input"
             />
-          </label>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className={`form-button ${loading ? "form-button-loading" : ""}`}
+          >
+            {loading ? "Processing..." : "Generate Receipts"}
+          </button>
+        </form>
+      ) : (
+        <div className="receipt-details">
+          <h3 className="receipt-details-title">Receipt Generation Info</h3>
+          <p><strong>Faculty:</strong> {receiptInfo.faculty}</p>
+          <p><strong>Semester:</strong> {receiptInfo.semester}</p>
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Processing..." : "Generate Receipts"}
-        </button>
-      </form>
+      )}
     </div>
   );
 }
