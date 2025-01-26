@@ -41,7 +41,7 @@ function GenerateReceiptsForm() {
 
   return (
     <div>
-      <h2>Generate Receipts for Faculty and Semester</h2>
+      <h2>Generate Receipts for Students</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>

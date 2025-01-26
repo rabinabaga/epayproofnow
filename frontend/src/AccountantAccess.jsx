@@ -51,7 +51,7 @@ const AccountantAccess = () => {
       ) : (
         // Display Set Fee form before submission
         <div>
-          <h2>Set Fee for Faculty and Semester</h2>
+          <h2>Set Fee for Student</h2>
           <form onSubmit={handleSubmit}>
             <div>
               <label>
